@@ -1,0 +1,106 @@
+### 우분투에서 실행하기
+
++ 프로젝트 디렉토리 생성
+```bash
+    mkdir ~/projectACL
+    cd ~/projectACL
+```
+
++ 가상환경 생성
+```bash
+   sudo apt update
+   sudo apt install -y python3-venv python3-pip
+   
+   python3 -m venv py310b
+   source py310b/bin/activate
+```
+
++ scapy 패키지 설치
+```bash
+    # 관리자 영역에 패키지 설치
+    sudo python3 -m pip install scapy
+```
+
++ 메인 애플리케이션
+```bash
+    sudo vi  ~/projectACL/main.py
+```
+
++ 메인 애플리케이션 실행
+```bash
+    # 관리자로 실행!
+    sudo python3 main.py
+```
+
+### 우분투에 미니콘다 설치하기
++ 우분투에 파이썬을 설치하는 것은 다소 번거로움
++ 왜냐하면 소스를 내려받아 직접 컴파일해야 하기 때문
++ 따라서, 미니콘다 배포파일을 다운로드해서 설치하는 것을 추천!!
+
+```bash
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-py311_25.11.1-1-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm ~/miniconda3/miniconda.sh
+```
+
+```bash
+ubuntu@ubuntu:~$ 
+ubuntu@ubuntu:~$ mkdir -p ~/miniconda3
+ubuntu@ubuntu:~$
+ubuntu@ubuntu:~$ wget https://repo.anaconda.com/miniconda/Miniconda3-py311_25.11.1-1-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+--2025-12-23 06:14:10--  https://repo.anaconda.com/miniconda/Miniconda3-py311_25.11.1-1-Linux-x86_64.sh
+Resolving repo.anaconda.com (repo.anaconda.com)... 104.16.191.158, 104.16.32.241, 2606:4700::6810:20f1, ...
+Connecting to repo.anaconda.com (repo.anaconda.com)|104.16.191.158|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 155144821 (148M) [application/octet-stream]
+Saving to: ‘/home/ubuntu/miniconda3/miniconda.sh’
+
+/home/ubuntu/miniconda3/m 100%[=====================================>] 147.96M  72.3MB/s    in 2.0s    
+
+2025-12-23 06:14:12 (72.3 MB/s) - ‘/home/ubuntu/miniconda3/miniconda.sh’ saved [155144821/155144821]
+
+ubuntu@ubuntu:~$
+ubuntu@ubuntu:~$ bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+PREFIX=/home/ubuntu/miniconda3
+Unpacking bootstrapper...
+Unpacking payload...
+
+Installing base environment...
+
+Preparing transaction: ...working... done
+Executing transaction: ...working... done
+installation finished.
+ubuntu@ubuntu:~$ 
+ubuntu@ubuntu:~$ rm ~/miniconda3/miniconda.sh
+ubuntu@ubuntu:~$ 
+```
+
+### 설치확인
+
+```bash
+# 셸 설정파일을 편집기로 열기
+vi ~/.bashrc
+
+# 맨 마지막 줄에 다음 내용 추가
+export PATH="$HOME/miniconda3/bin:$PATH"
+
+# 변경사항 시스템에 적용
+source ~/.bashrc
+
+# 콘다 버젼 확인 -> 25.11.1
+conda --version
+
+# 콘다 자동 base 환경 비활성화하고 확인 -> False
+conda config --set auto_activate_base false
+conda config --show auto_activate
+```
+
+
+
+
+
+
+
+
+
